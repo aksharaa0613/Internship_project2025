@@ -45,15 +45,15 @@ const Stats = () => {
         </div>
         <div className="stat-card">
           <h3>Total Expenses</h3>
-          <p className="stat-value">${totalExpenses.toFixed(2)}</p>
+          <p className="stat-value">₹{totalExpenses.toFixed(2)}</p>
         </div>
         <div className="stat-card">
           <h3>Total Budget Amount</h3>
-          <p className="stat-value">${totalBudgetAmount.toFixed(2)}</p>
+          <p className="stat-value">₹{totalBudgetAmount.toFixed(2)}</p>
         </div>
         <div className="stat-card">
           <h3>Average Expense</h3>
-          <p className="stat-value">${averageExpense.toFixed(2)}</p>
+          <p className="stat-value">₹{averageExpense.toFixed(2)}</p>
         </div>
       </div>
 
@@ -66,7 +66,7 @@ const Stats = () => {
                 <div key={category} className="category-stat">
                   <div className="category-info">
                     <span className="category-name">{category}</span>
-                    <span className="category-amount">${amount.toFixed(2)}</span>
+                    <span className="category-amount">₹{amount.toFixed(2)}</span>
                   </div>
                   <div className="category-bar">
                     <div 
@@ -92,7 +92,7 @@ const Stats = () => {
                 <div key={month} className="monthly-stat">
                   <div className="month-info">
                     <span className="month-name">{month}</span>
-                    <span className="month-amount">${amount.toFixed(2)}</span>
+                    <span className="month-amount">₹{amount.toFixed(2)}</span>
                   </div>
                   <div className="month-bar">
                     <div 

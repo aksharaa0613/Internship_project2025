@@ -38,16 +38,16 @@ const Dashboard = () => {
       <div className="dashboard-stats">
         <div className="stat-card">
           <h3>Current Budget</h3>
-          <p className="stat-value">${currentBudget ? currentBudget.totalBudget : 0}</p>
+          <p className="stat-value">₹{currentBudget ? currentBudget.totalBudget : 0}</p>
         </div>
         <div className="stat-card">
           <h3>Total Expenses</h3>
-          <p className="stat-value">${totalExpenses}</p>
+          <p className="stat-value">₹{totalExpenses}</p>
         </div>
         <div className="stat-card">
           <h3>Remaining</h3>
           <p className={`stat-value ${remainingBudget < 0 ? 'negative' : 'positive'}`}>
-            ${remainingBudget}
+            ₹{remainingBudget}
           </p>
         </div>
         <div className="stat-card">
@@ -73,7 +73,7 @@ const Dashboard = () => {
                   <h4>{expense.title}</h4>
                   <p>{expense.category}</p>
                 </div>
-                <div className="expense-amount">${expense.amount}</div>
+                <div className="expense-amount">₹{expense.amount}</div>
               </div>
             ))}
           </div>

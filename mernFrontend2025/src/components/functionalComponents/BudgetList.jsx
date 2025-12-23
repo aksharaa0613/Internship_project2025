@@ -61,16 +61,16 @@ const BudgetList = () => {
                 <div className="budget-stats">
                   <div className="stat">
                     <label>Total Budget:</label>
-                    <span>${budget.totalBudget}</span>
+                    <span>₹{budget.totalBudget}</span>
                   </div>
                   <div className="stat">
                     <label>Spent:</label>
-                    <span>${totalExpenses}</span>
+                    <span>₹{totalExpenses}</span>
                   </div>
                   <div className="stat">
                     <label>Remaining:</label>
                     <span className={remaining < 0 ? 'negative' : 'positive'}>
-                      ${remaining}
+                      ₹{remaining}
                     </span>
                   </div>
                 </div>
@@ -93,7 +93,7 @@ const BudgetList = () => {
                       {budget.categories.map((category, index) => (
                         <div key={index} className="category-item">
                           <span>{category.name}</span>
-                          <span>${category.amount}</span>
+                          <span>₹{category.amount}</span>
                         </div>
                       ))}
                     </div>
