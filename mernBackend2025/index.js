@@ -13,6 +13,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Test route
+app.get('/', (req, res) => {
+  res.json({ message: 'Budget Planner API is running!' });
+});
+
+app.get('/api/test', (req, res) => {
+  res.json({ message: 'API test successful', timestamp: new Date() });
+});
+
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/budgets', budgetRoutes);
