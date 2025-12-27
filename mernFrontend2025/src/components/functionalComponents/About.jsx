@@ -69,13 +69,13 @@ const About = () => {
           </div>
         </section>
 
-        <section className="about-section">
+        {/* <section className="about-section">
           <h2>Technology Stack</h2>
           <p>
             Built with modern web technologies including React, Node.js, Express, 
             and MongoDB to provide a fast, reliable, and scalable experience.
           </p>
-        </section>
+        </section> */}
       </div>
     </div>
   );
