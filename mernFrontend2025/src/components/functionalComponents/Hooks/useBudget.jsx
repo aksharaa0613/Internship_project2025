@@ -26,7 +26,6 @@ export const useBudget = () => {
     try {
       console.log('Creating budget with data:', budgetData);
       console.log('API URL:', API_URL);
-      console.log('Auth token:', localStorage.getItem('token') ? 'Present' : 'Missing');
       
       const response = await axios.post(`${API_URL}/budgets`, budgetData);
       console.log('Budget creation response:', response.data);
