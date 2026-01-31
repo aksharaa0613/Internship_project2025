@@ -10,8 +10,12 @@ const expenseRoutes = require('./routes/expenseRoutes');
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:5173', 'http://localhost:3000', 'https://your-frontend-domain.com'],
+  credentials: true
+}));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Test route
 app.get('/', (req, res) => {
@@ -28,9 +32,21 @@ app.use('/api/budgets', budgetRoutes);
 app.use('/api/expenses', expenseRoutes);
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI)
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.log('MongoDB connection error:', err));
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(process.env.MONGODB_URI);
+    console.log(`MongoDB connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.error('MongoDB connection error:', error.message);
+    console.error('Please check:');
+    console.error('1. Your IP is whitelisted in MongoDB Atlas');
+    console.error('2. Your MongoDB URI is correct');
+    console.error('3. Your network connection is stable');
+    process.exit(1);
+  }
+};
+
+connectDB();
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

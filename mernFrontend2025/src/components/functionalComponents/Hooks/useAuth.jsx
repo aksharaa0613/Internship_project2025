@@ -1,7 +1,10 @@
 import { useState, useEffect, createContext, useContext } from 'react';
 import axios from 'axios';
 
-const API_URL = 'https://internship-project2025.onrender.com/api';
+// Use local backend for development, deployed URL for production
+const API_URL = process.env.NODE_ENV === 'production' 
+  ? 'https://internship-project2025.onrender.com/api'
+  : 'http://localhost:5000/api';
 
 const AuthContext = createContext();
 
@@ -24,8 +27,15 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
+      console.log('Attempting login with:', { email, apiUrl: API_URL });
       const response = await axios.post(`${API_URL}/auth/login`, { email, password });
+      console.log('Login response:', response.data);
+      
       const { token, user } = response.data;
+      
+      if (!token || !user) {
+        throw new Error('Invalid response format');
+      }
       
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
@@ -34,7 +44,9 @@ export const AuthProvider = ({ children }) => {
       
       return { success: true };
     } catch (error) {
-      return { success: false, message: error.response?.data?.message || 'Login failed' };
+      console.error('Login error:', error);
+      const message = error.response?.data?.message || error.message || 'Login failed';
+      return { success: false, message };
     }
   };
 

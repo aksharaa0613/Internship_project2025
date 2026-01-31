@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const API_URL = 'https://internship-project2025.onrender.com/api';
+// Use local backend for development, deployed URL for production
+const API_URL = process.env.NODE_ENV === 'production' 
+  ? 'https://internship-project2025.onrender.com/api'
+  : 'http://localhost:5000/api';
 
 export const useBudget = () => {
   const [budgets, setBudgets] = useState([]);
@@ -23,11 +26,19 @@ export const useBudget = () => {
 
   const createBudget = async (budgetData) => {
     try {
+      console.log('Creating budget with data:', budgetData);
+      console.log('API URL:', API_URL);
+      console.log('Auth token:', localStorage.getItem('token') ? 'Present' : 'Missing');
+      
       const response = await axios.post(`${API_URL}/budgets`, budgetData);
+      console.log('Budget creation response:', response.data);
+      
       setBudgets(prev => [response.data.budget, ...prev]);
       return { success: true };
     } catch (err) {
-      return { success: false, message: err.response?.data?.message || 'Failed to create budget' };
+      console.error('Budget creation error:', err);
+      const message = err.response?.data?.message || err.message || 'Failed to create budget';
+      return { success: false, message };
     }
   };
 
