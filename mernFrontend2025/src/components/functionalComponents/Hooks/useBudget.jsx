@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-// Use local backend for development, deployed URL for production
-const API_URL = process.env.NODE_ENV === 'production' 
-  ? 'https://internship-project2025.onrender.com/api'
-  : 'http://localhost:5000/api';
+// Use deployed backend URL for production, local for development
+const API_URL = 'https://internship-project2025.onrender.com/api';
 
 export const useBudget = () => {
   const [budgets, setBudgets] = useState([]);

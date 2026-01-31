@@ -11,7 +11,12 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:3000', 'https://your-frontend-domain.com'],
+  origin: [
+    'http://localhost:5173', 
+    'http://localhost:3000', 
+    'https://internship-project2025.vercel.app',
+    'https://internship-project2025-*.vercel.app'
+  ],
   credentials: true
 }));
 app.use(express.json());
